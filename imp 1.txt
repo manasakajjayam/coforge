@@ -1,4 +1,4 @@
-java -cp location(0.0.1-SNAPSHOT)
+****java -cp location(0.0.1-SNAPSHOT)
 
 3  Important properties of hibernet
 hibernate.hbm2ddl.auto
