@@ -1,0 +1,151 @@
+java -cp location(0.0.1-SNAPSHOT)
+
+3  Important properties of hibernet
+hibernate.hbm2ddl.auto
+it creates the table automatically
+it has 3 values 
+create -- creates a new table when every time u run the prog 
+
+create-drop --
+create and drops tables when every time u run the prog
+
+update--
+creates a new table when 1st time u run the prog
+
+hibernate.dialet
+it connects to the multiple databases
+to connect MYsql dialet value is
+org.hibernate.dialet.MYsql5Dialect
+
+
+show_sql
+it has value called true/false
+tells to hibernate that weather to display quesry/not
+
+
+how to generate a primary key in hibernate?
+using <generator class=" "/> we generate primary key value in hibrenate.hbm.xml.file
+
+following the classes used to generate primary key value
+
+1)assigned it is default here hibernate doesnot generates primarykey value
+2)increment her hibernate generated pk value used for int byte short long data types used for all datatypes
+3)sequnece here hibernate generates pk value used for int byte short long data types used for oracle datatypes
+4)identity here hibernate generates pk value used for int byte short long data types used for mysql datatypes
+
+create a book 
+<?xml version="1.0">
+<!DOCTYPE hibernate-mappping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.source.sourceforge.net/hibernate-mapping-3.0 dtd">
+<hibernate-mapping>
+<class name="praveen.Book" table="coforgebook"></class>
+<id name ="id column=bookid" length="2">
+<generator class ="assigned">
+</generator>
+</id>
+
+
+HQL  hibernate query language
+it uses Class names instead of tablename
+and property names instead of col names for mapping
+
+eg:to selct all col of emp table in SQL Query is
+select *from Emp; //emp is tablename
+
+HQL query for same is
+
+from Emp; //emp is classname
+select name,age from emp where name,age are columns
+Emp is a table
+
+select name,age from Emp where name,age are FIELD NAMES
+emp is a class
+
+how to create a HQL query
+Query c=session.createQuery(String query)
+where Query is interface
+
+it is present in org.hibernate.*pkg;
+
+methods
+int excuteUpdate()
+Query list()
+Query setMaxResults()
+Query setFirstResult()
+Query 
+
+
+Association ::
+hibernate provide 4 kinds of associations
+1)1:1
+one class depends on one class it is achived by @OneToOne annotation
+it is field level annotation
+eg :1 person has 1 address
+Syntax:
+@OneToOne(cascade=Casecade.Type.All)
+mean if parent class performs any operation it refelcts to childclass
+
+2)1:m
+It is achived through @One ToMany
+
+
+3)m:1
+it is achived through @ManyToOne annotation
+it is also a field level annotation
+
+4)m:m
+it is achived through @ManyToMany annotation
+it is also a field level annotation
+eg: many students enrolls many courses
+ @ManyToMany(cascade="ALL")
+ @join Table it is field level annotation
+used to create a Table by joining 2 tables
+
+it has 2 attributes
+-> joinColumns & inverseJoinColumns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package manasa;
+import java.util.*;
+import java.sql.*;
+public class RetriveCollection {
+
+
+public static void main (String[] args)throws Exception{
+	Connection conn=ConnectionUtil.getConnection();
+	PreparedStatement pst=conn.prepareStatement("select* from product");
+   ResultSet r=pst.executeQuery();
+	ArrayList<Product> al=new ArrayList<Product>();
+while(r.next())
+{
+	Product P=new Product(r.getInt(1),r.getString(2),r.getInt(3));
+	al.add(P);
+}
+for(Product p:al)
+{
+	System.out.println(P);     
+  }
+ }
+}
